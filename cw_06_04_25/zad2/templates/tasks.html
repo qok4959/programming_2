@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<h1>Tasks</h1>
+<form method="POST" action="/tasks">
+    <input type="text" name="task" placeholder="New task">
+    <button type="submit">Add</button>
+</form>
+<ul>
+    {% for task in tasks %}
+    <li>
+        {% if task.done %}
+        <s>{{ task.task }}</s>
+        {% else %}
+        {{ task.task }}
+        <a href="/done/{{ loop.index0 }}">Done</a>
+        {% endif %}
+        <a href="/delete/{{ loop.index0 }}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/">Home</a>
+</body>
+</html>
